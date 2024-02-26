@@ -1,7 +1,5 @@
-import { StyleSheet, FlatList } from 'react-native';
-
-import EditScreenInfo from '@/src/components/EditScreenInfo';
-import { Text, View } from '@/src/components/Themed';
+import { StyleSheet, FlatList, View } from 'react-native';
+import { Text } from '@/src/components/Themed';
 import { Stack } from 'expo-router';
 import top5 from '@/assets/data/top5.json';
 import { StockListItem } from '@/src/components/StockListItem';
@@ -15,6 +13,7 @@ export default function TabOneScreen() {
       <FlatList
         data={stocks}
         renderItem={({ item }) => <StockListItem stock={item} />}
+        contentContainerStyle={styles.content}
       />
     </View>
   );
@@ -25,5 +24,9 @@ const styles = StyleSheet.create({
     flex: 1
     // alignItems: 'center',
     // justifyContent: 'center'
+  },
+  content: {
+    gap: 20,
+    padding: 10
   }
 });
