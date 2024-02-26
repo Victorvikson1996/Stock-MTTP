@@ -1,35 +1,29 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, FlatList } from 'react-native';
 
 import EditScreenInfo from '@/src/components/EditScreenInfo';
 import { Text, View } from '@/src/components/Themed';
+import { Stack } from 'expo-router';
+import top5 from '@/assets/data/top5.json';
+import { StockListItem } from '@/src/components/StockListItem';
 
 export default function TabOneScreen() {
+  const stocks = Object.values(top5);
+
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Tab One</Text>
-      <View
-        style={styles.separator}
-        lightColor='#eee'
-        darkColor='rgba(255,255,255,0.1)'
+      <Stack.Screen options={{ title: 'Stocks' }} />
+      <FlatList
+        data={stocks}
+        renderItem={({ item }) => <StockListItem stock={item} />}
       />
-      <EditScreenInfo path='app/(tabs)/index.tsx' />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center'
-  },
-  title: {
-    fontSize: 20,
-    fontWeight: 'bold'
-  },
-  separator: {
-    marginVertical: 30,
-    height: 1,
-    width: '80%'
+    flex: 1
+    // alignItems: 'center',
+    // justifyContent: 'center'
   }
 });
